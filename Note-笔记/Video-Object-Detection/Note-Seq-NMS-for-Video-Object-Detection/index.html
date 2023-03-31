@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"intellisoftx.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Abstract用于视频目标检测的NMS方法">
+    <meta name="description" content="Abstract用于视频目标检测的NMS方法 1. Introduction视频目标检测困难的原因：  较大的尺度变化 遮挡 运动模糊  本文，我们提出单帧检测的一个简单拓展来帮助解决上述问题。 单帧检测完全忽略了时间维度，本文，我们在后处理阶段融合时序信息，以此优化每帧的检测结果。对于给定的时间序列上的ROI和类别得分，我们使用简单的重叠标准来连接邻近帧的BBox，使得序列的得分最大化。之后抑制">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文笔记《Seq-nms for video object detection》">
-<meta property="og:url" content="http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-nms-for-video-object-detection/index.html">
+<meta property="og:title" content="Note Seq-NMS for Video Object Detection">
+<meta property="og:url" content="http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-NMS-for-Video-Object-Detection/index.html">
 <meta property="og:site_name" content="Intelligent Software X">
-<meta property="og:description" content="Abstract用于视频目标检测的NMS方法">
+<meta property="og:description" content="Abstract用于视频目标检测的NMS方法 1. Introduction视频目标检测困难的原因：  较大的尺度变化 遮挡 运动模糊  本文，我们提出单帧检测的一个简单拓展来帮助解决上述问题。 单帧检测完全忽略了时间维度，本文，我们在后处理阶段融合时序信息，以此优化每帧的检测结果。对于给定的时间序列上的ROI和类别得分，我们使用简单的重叠标准来连接邻近帧的BBox，使得序列的得分最大化。之后抑制">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zavix-image.oss-cn-shenzhen.aliyuncs.com/note/Seq-NMS/1515727263191.png">
 <meta property="og:image" content="http://zavix-image.oss-cn-shenzhen.aliyuncs.com/note/Seq-NMS/1515729313541.png">
@@ -37,22 +37,22 @@
 <meta property="og:image" content="http://zavix-image.oss-cn-shenzhen.aliyuncs.com/note/Seq-NMS/1515731904233.png">
 <meta property="og:image" content="http://zavix-image.oss-cn-shenzhen.aliyuncs.com/note/Seq-NMS/1515732534734.png">
 <meta property="og:image" content="http://zavix-image.oss-cn-shenzhen.aliyuncs.com/note/Seq-NMS/1515732575950.png">
-<meta property="article:published_time" content="2018-03-27T14:38:24.000Z">
-<meta property="article:modified_time" content="2023-03-30T11:43:21.440Z">
+<meta property="article:published_time" content="2018-11-10T07:02:37.000Z">
+<meta property="article:modified_time" content="2023-03-30T11:43:21.443Z">
 <meta property="article:author" content="intellisoftx">
 <meta property="article:tag" content="Video Object Detection">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://zavix-image.oss-cn-shenzhen.aliyuncs.com/note/Seq-NMS/1515727263191.png">
 
 
-<link rel="canonical" href="http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-nms-for-video-object-detection/">
+<link rel="canonical" href="http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-NMS-for-Video-Object-Detection/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-nms-for-video-object-detection/","path":"Note-笔记/Video-Object-Detection/Note-Seq-nms-for-video-object-detection/","title":"论文笔记《Seq-nms for video object detection》"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-NMS-for-Video-Object-Detection/","path":"Note-笔记/Video-Object-Detection/Note-Seq-NMS-for-Video-Object-Detection/","title":"Note Seq-NMS for Video Object Detection"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>论文笔记《Seq-nms for video object detection》 | Intelligent Software X</title>
+<title>Note Seq-NMS for Video Object Detection | Intelligent Software X</title>
   
 
 
@@ -176,7 +176,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-nms-for-video-object-detection/">
+    <link itemprop="mainEntityOfPage" href="http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-NMS-for-Video-Object-Detection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -189,12 +189,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="论文笔记《Seq-nms for video object detection》 | Intelligent Software X">
+      <meta itemprop="name" content="Note Seq-NMS for Video Object Detection | Intelligent Software X">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          论文笔记《Seq-nms for video object detection》
+          Note Seq-NMS for Video Object Detection
         </h1>
 
         <div class="post-meta-container">
@@ -205,7 +205,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2018-03-27 22:38:24" itemprop="dateCreated datePublished" datetime="2018-03-27T22:38:24+08:00">2018-03-27</time>
+      <time title="创建时间：2018-11-10 15:02:37" itemprop="dateCreated datePublished" datetime="2018-11-10T15:02:37+08:00">2018-11-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -238,10 +238,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img src="http://zavix-image.oss-cn-shenzhen.aliyuncs.com/note/Seq-NMS/1515727263191.png" alt="1515727263191"></p>
-<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>用于视频目标检测的NMS方法</p>
-<span id="more"></span>
-
+        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>用于视频目标检测的NMS方法</p>
 <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>视频目标检测困难的原因：</p>
 <ul>
 <li>较大的尺度变化</li>
@@ -250,12 +247,15 @@
 </ul>
 <p>本文，我们提出单帧检测的一个简单拓展来帮助解决上述问题。</p>
 <p>单帧检测完全忽略了时间维度，本文，我们在后处理阶段融合时序信息，以此优化每帧的检测结果。对于给定的时间序列上的ROI和类别得分，我们使用简单的重叠标准来连接邻近帧的BBox，使得序列的得分最大化。之后抑制附近的BBox，然后对BBox重打分。</p>
+<p><img src="http://zavix-image.oss-cn-shenzhen.aliyuncs.com/note/Seq-NMS/1515727263191.png" alt="1515727263191"></p>
 <p>贡献：</p>
 <ul>
 <li>提出Seq-NMS改进用于视频视频数据的物体检测流程。特别地，我们改进了后处理阶段，使用前后帧的高分物体结果增强弱检测结果。</li>
 <li>Seq-NMS在ImageNet VID上的表现超过先进的单帧检测结果。</li>
 <li>方法在ILSVRC2015上排名第3</li>
 </ul>
+<span id="more"></span>
+
 <h2 id="2-我们的方法"><a href="#2-我们的方法" class="headerlink" title="2. 我们的方法"></a>2. 我们的方法</h2><h3 id="2-1-Seq-NMS"><a href="#2-1-Seq-NMS" class="headerlink" title="2.1 Seq-NMS"></a>2.1 Seq-NMS</h3><p>NMS经常会选错BBox，选择的BBox通常较大，且与GT与较小的IOU。大BBox经常有较高的物体得分，可能是在ROI pooling时大BBox能提取更多的信息。为了解决这个问题，我们尝试使用时序信息对bbox重排序。我们假设邻近帧有相同的物体具有相似的位置和尺寸。</p>
 <p>我们提出一些经验性的方法：1）序列选择，2）序列重打分，3）抑制。重复此步骤直到没有剩余序列为止。图1显示了此过程。</p>
 <p><img src="http://zavix-image.oss-cn-shenzhen.aliyuncs.com/note/Seq-NMS/1515729313541.png" alt="1515729313541"></p>
@@ -296,7 +296,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-nms-for-video-object-detection/" title="论文笔记《Seq-nms for video object detection》">http://intellisoftx.com/Note-笔记/Video-Object-Detection/Note-Seq-nms-for-video-object-detection/</a>
+      <a href="http://intellisoftx.com/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Seq-NMS-for-Video-Object-Detection/" title="Note Seq-NMS for Video Object Detection">http://intellisoftx.com/Note-笔记/Video-Object-Detection/Note-Seq-NMS-for-Video-Object-Detection/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -312,13 +312,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/Note-%E7%AC%94%E8%AE%B0/Object-Detection/Note-Training-Region-Based-Object-Detectors-with-Online-Hard-Example-Mining/" rel="prev" title="论文笔记《Training Region-Based Object Detectors with Online Hard Example Mining》">
-                  <i class="fa fa-chevron-left"></i> 论文笔记《Training Region-Based Object Detectors with Online Hard Example Mining》
+                <a href="/Note-%E7%AC%94%E8%AE%B0/Pedestrian-Detection/Note-Individualness-and-Determinantal-Point-Processes-for-Pedestrian-Detection/" rel="prev" title="论文笔记 Individualness and Determinantal Point Processes for Pedestrian Detection">
+                  <i class="fa fa-chevron-left"></i> 论文笔记 Individualness and Determinantal Point Processes for Pedestrian Detection
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/Note-%E7%AC%94%E8%AE%B0/Video-Object-Detection/Note-Deep-Feature-Flow-for-Video-Recognition/" rel="next" title="论文笔记《Deep Feature Flow for Video Recognition》">
-                  论文笔记《Deep Feature Flow for Video Recognition》 <i class="fa fa-chevron-right"></i>
+                <a href="/Note-%E7%AC%94%E8%AE%B0/Pedestrian-Detection/Note-How-Far-are-We-from-Solving-Pedestrian-Detection/" rel="next" title="Note-How Far are We from Solving Pedestrian Detection?">
+                  Note-How Far are We from Solving Pedestrian Detection? <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
